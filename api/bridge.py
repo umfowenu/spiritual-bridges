@@ -50,7 +50,7 @@ class handler(BaseHTTPRequestHandler):
                 }
             
             # Send to Make.com webhook - REPLACE WITH YOUR ACTUAL WEBHOOK URL
-            make_webhook_url = https://hook.us2.make.com/19btlfde41s85fs5osbpcv5qyurijdap?title=Spiritual%20Test&video_title=How%20to%20Meditate&duration=37%20min&reason=Test%20notification&youtube_url=https://youtu.be/EgvZTnVO7SE&priority=0
+            make_webhook_url = https://hook.us2.make.com/19btlfde41s85fs5osbpcv5qyurijdap
             
             response = requests.post(make_webhook_url, json=webhook_data, timeout=10)
             
