@@ -1,11 +1,16 @@
 from flask import Flask, request, jsonify
 import requests
 import os
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
+def health_check():
+    """Health check endpoint required by Railway"""
     return "Spiritual Guidance Bridge is running! Send POST requests to /bridge"
 
 @app.route('/bridge', methods=['POST'])
@@ -52,6 +57,7 @@ def bridge():
         response = requests.post(make_webhook_url, json=webhook_data, timeout=10)
         
         if response.status_code == 200:
+            logging.info("Notification sent successfully")
             return jsonify({
                 "success": True,
                 "message": "✅ Notification sent to phone successfully!"
@@ -60,11 +66,14 @@ def bridge():
             raise Exception(f"Webhook failed with status {response.status_code}")
             
     except Exception as e:
+        logging.error(f"Bridge error: {str(e)}")
         return jsonify({
             "success": False,
             "error": f"❌ Failed to send notification: {str(e)}"
         }), 500
 
 if __name__ == '__main__':
+    logging.info("Starting Spiritual Guidance Bridge Service...")
+    # Railway assigns PORT environment variable automatically
     port = int(os.environ.get('PORT', 8000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=False)
