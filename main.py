@@ -74,6 +74,6 @@ def bridge():
 
 if __name__ == '__main__':
     logging.info("Starting Spiritual Guidance Bridge Service...")
-    # Railway assigns PORT environment variable automatically
-    port = int(os.environ.get('PORT', 8000))
+    # Railway assigns PORT environment variable automatically (usually 8080)
+    port = int(os.environ.get('PORT', 8080))  # Changed default to 8080
     app.run(host='0.0.0.0', port=port, debug=False)
