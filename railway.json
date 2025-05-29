@@ -1,3 +1,6 @@
+
+JSON
+
 {
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
@@ -6,8 +9,6 @@
   "deploy": {
     "runtime": "V2",
     "numReplicas": 1,
-    "startCommand": "python main.py",
-    "healthcheckPath": "/",
     "sleepApplication": false,
     "multiRegionConfig": {
       "us-east4-eqdc4a": {
@@ -15,7 +16,6 @@
       }
     },
     "restartPolicyType": "ON_FAILURE",
-    "healthcheckTimeout": 100,
     "restartPolicyMaxRetries": 10
   }
 }
