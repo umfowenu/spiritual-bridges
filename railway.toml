@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python app.py"
+healthcheckPath = "/"
+restartPolicyType = "ON_FAILURE"
+
+[deploy.environmentVariables]
+PORT = "8000"
