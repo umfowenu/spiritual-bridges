@@ -87,3 +87,12 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
         self.wfile.write(b"Spiritual Guidance Bridge is running! Send POST requests to use.")
+
+     if __name__ == '__main__':
+        import os
+        from http.server import HTTPServer
+        
+        port = int(os.environ.get('PORT', 8080))
+        server = HTTPServer(('0.0.0.0', port), handler)
+        print(f"Server running on port {port}")
+        server.serve_forever()
